@@ -1,0 +1,116 @@
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 420px;
+      background-image: url("https://media.tenor.com/oeGuhk0QjN0AAAAM/drift-anim.gif");
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #ff0044a0;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #ff0044a0;
+      text-shadow: 0 0 20px #ff004460;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      width: 50%;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      border-bottom: 2px solid #ff0044a0;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: #ff0044a0;
+      color: black;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: #111;
+      border: 1px solid #ff0044a0;
+      border-radius: 10px;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #ff0044a0;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.08);
+      background: #ac002ec7;
+      box-shadow: 0 0 28px #ff0044a0;
+    }
+
+    #google-login {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #ff0044a0;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    #google-login:hover {
+      transform: scale(1.08);
+      background: #ac002ec7;
+      box-shadow: 0 0 28px #ff0044a0;
+    }
+
+    .close {
+      text-align: center;
+      margin-top: 15px;
+      cursor: pointer;
+      color: white;
+      transition: 0.3s;
+      border-radius: 10px;
+    }
+    .close:hover {
+            transform: scale(1.08);
+      background: #ac002ec7;
+      box-shadow: 0 0 28px #ff0044a0;
+    }
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+      font-size: 14px;
+    }

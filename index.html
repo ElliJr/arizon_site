@@ -1,434 +1,273 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azairon</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* -----------------------------------
-   RESET & BASE
------------------------------------ */
-@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/icone.ico" type="image/x-icon"> 
+    <title>Azairon</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero__inner">
+        <h1 class="hero__title">Azairon</h1>
+        <p class="hero__lead">
+          Seu novo treinador inteligente.
+          <br>Crie sua conta grátis e receba um treino completo em segundos.
+        </p>
+        
+          <button onclick="openModal()" class="btn btn--primary" >Criar Conta</button>          
+                
 
+          <!-- Modal Principal -->
+        </div>
+        <div id="main-modal" class="modal">
+          <div class="modal-content">
+            <!-- Abas -->
+            <div class="tabs">
+              <div id="tab-login" class="tab active"
+                onclick="showLogin()">Login</div>
+              <div id="tab-create" class="tab" onclick="showCreate()">Criar
+                Conta</div>
+            </div>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", Arial, sans-serif;
-}
+            <!-- LOGIN -->
+            <div id="login-box">
+              <input type="email" id="login-email" placeholder="Seu email">
+              <input type="password" id="login-password"
+                placeholder="Sua senha">
+              <button id="btn-login">Entrar</button>
+              <p class="error" id="login-error"></p>
+            </div>
+            <button id="google-login" class="" >logar com google </button>    
+            <!-- CRIAR CONTA -->
+            <div id="create-box" style="display: none;">
+              <input type="email" id="create-email" placeholder="Seu email">
+              <input type="password" id="create-password"
+                placeholder="Sua senha">
+              <button id="btn-create">Criar Conta</button>
+              <p class="error" id="create-error"></p>
+            </div>
 
-body {
-  background: #050505;
-  color: #fff;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+            <div class="close" onclick="closeModal()">Fechar</div>
+          </div>
+        </div>
 
-.section-title {
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: 900;
-  margin-bottom: 40px;
-  color: #ff0044;
-  letter-spacing: 1px;
-}
+      <div class="hero__footer-note">Menos de 2 minutos para começar.</div>
+    </div>
+    <!-- COMO FUNCIONA -->
+    <section class="how">
+      <h2 class="section-title">Como funciona?</h2>
+      <div class="how-grid">
+        <div class="how-item">
+          <div class="how-number">1</div>
+          <h3>Crie sua conta</h3>
+          <p>Leva menos de 1 minuto. Você só precisa informar seus
+            objetivos.</p>
+        </div>
+        <div class="how-item">
+          <div class="how-number">2</div>
+          <h3>IA analisa seu perfil</h3>
+          <p>Nível, experiência, rotina, equipamentos… tudo é considerado
+            automaticamente.</p>
+        </div>
 
-/* -----------------------------------
-   HERO
------------------------------------ */
+        <div class="how-item">
+          <div class="how-number">3</div>
+          <h3>Receba seu treino</h3>
+          <p>Um treino completo e otimizado para resultados reais, atualizado
+            semanalmente.</p>
+        </div>
+      </div>
+    </section>
 
-p{
-  font-family: "Prompt", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-h2{
-      font-family: "Prompt", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
+    <!-- FEATURES -->
+    <section class="features">
+      <h2 class="section-title">Por que usar o Azairon?</h2>
 
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  background: radial-gradient(circle at top, #140014, #000000);
-}
+      <div class="feature">
+        <h2 class="feature__title">Treinos personalizados</h2>
+        <p class="feature__text">IA que entende seu corpo, objetivo e
+          rotina.</p>
+      </div>
 
-.hero__title {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #ff0044;
-  text-shadow: 0 0 20px #ff004460;
-}
+      <div class="feature">
+        <h2 class="feature__title">Evolução contínua</h2>
+        <p class="feature__text">Ajustes automáticos para você crescer com
+          segurança.</p>
+      </div>
 
-.hero__lead {
-  font-size: 1.4rem;
-  margin-top: 15px;
-  max-width: 600px;
-  color: #d8d8d8;
-}
+      <div class="feature">
+        <h2 class="feature__title">Comunidade ativa</h2>
+        <p class="feature__text">Compartilhe resultados, conquistas e receba
+          suporte.</p>
+      </div>
 
-.hero__cta-group {
-  display: flex;
-  gap: 16px;
-  margin-top: 35px;
-}
+      <div class="feature">
+        <h2 class="feature__title">Acompanhamento inteligente</h2>
+        <p class="feature__text">Veja sua evolução e receba recomendações em
+          tempo real.</p>
+      </div>
 
-/* -----------------------------------
-   BUTTONS
------------------------------------ */
+      <div class="feature">
+        <h2 class="feature__title">Biblioteca de exercícios</h2>
+        <p class="feature__text">Vídeos, explicações e execução correta de cada
+          movimento.</p>
+      </div>
 
-.btn {
-  padding: 14px 30px;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  transition: 0.3s;
-}
+    </section>
 
-.btn--primary {
-  background: #ff0044;
-  color: #fff;
-  box-shadow: 0 0 20px #ff004460;
-}
+    <!-- TESTEMUNHOS -->
+    <section class="testimonials">
+      <h2 class="section-title">O que estão dizendo</h2>
 
-.btn--primary:hover {
-  transform: scale(1.05);
-  background: #e0003c;
-  box-shadow: 0 0 28px #ff0044a0;
-}
+      <div class="testimonial-grid">
 
-.btn--outline {
-  background: transparent;
-  border: 2px solid #ff0044;
-  color: #ff0044;
-}
+        <div class="testimonial">
+          <p class="testimonial-text">
+            “Em 3 semanas senti mais evolução do que em meses treinando
+            sozinho.”
+          </p>
+          <span class="testimonial-author">— Lucas Andrade</span>
+        </div>
 
-.btn--outline:hover {
-  background: #ff0044;
-  color: #fff;
-  transform: scale(1.05);
-}
+        <div class="testimonial">
+          <p class="testimonial-text">
+            “O plano ajusta de acordo com meu tempo. A IA realmente entende
+            minha rotina.”
+          </p>
+          <span class="testimonial-author">— Marina Santos</span>
+        </div>
 
-.btn-big {
-  padding: 18px 50px;
-  font-size: 1.2rem;
-}
+        <div class="testimonial">
+          <p class="testimonial-text">
+            “Finalmente um app que não é genérico. Meu treino parece feito por
+            um personal.”
+          </p>
+          <span class="testimonial-author">— Rafael Monteiro</span>
+        </div>
 
-/* -----------------------------------
-   HERO FOOTER NOTE
------------------------------------ */
+      </div>
+    </section>
 
-.hero__footer-note {
-  margin-top: 40px;
-  color: #aaaaaa;
-  font-size: 0.9rem;
-}
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <h2>Pronto para transformar seu treino?</h2>
+      <p>Crie sua conta e comece seu treino personalizado agora.</p>
+      <button class="btn btn--primary btn-big">Começar Agora</button>
+    </section>
 
-/* -----------------------------------
-   HOW SECTION
------------------------------------ */
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2025 Azairon — Todos os direitos reservados.</p>
+    </footer>
+    
+    <script type="module">
+      // IMPORTS --------------------------------------------------------------
 
-.how {
-  padding: 80px 20px;
-}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-.how-grid {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-}
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 
-.how-item {
-  background: #0e0e0e;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 0 20px #ff004420;
-  border: 1px solid #1a1a1a;
-  transition: 0.3s;
-}
+// CONFIG ---------------------------------------------------------------
 
-.how-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 35px #ff004450;
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAtCaQCMmTUOaguvzW9wkNsCjadgc3klJM",
+  authDomain: "azarion-b19c5.firebaseapp.com",
+  projectId: "azarion-b19c5",
+  storageBucket: "azarion-b19c5.firebasestorage.app",
+  messagingSenderId: "217138953652",
+  appId: "1:217138953652:web:9c1ebe80b07af13e9006e1",
+  measurementId: "G-RS2WV81P8Q"
+};
 
-.how-number {
-  background: #ff0044;
-  color: #fff;
-  display: inline-block;
-  padding: 8px 18px;
-  font-weight: 900;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+// INIT FIREBASE --------------------------------------------------------
 
-/* -----------------------------------
-   FEATURES
------------------------------------ */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const analytics = getAnalytics(app); // ATIVADO AQUI ✔
 
-.features {
-  padding: 80px 20px;
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-}
+// PROVIDER GOOGLE ------------------------------------------------------
 
-.feature {
-  background: #0e0e0e;
-  padding: 25px;
-  border-radius: 14px;
-  border: 1px solid #1b1b1b;
-  transition: 0.3s;
-  box-shadow: 0 0 15px #00ffb030;
-}
+const provider = new GoogleAuthProvider();
 
-.feature:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 30px #00ffb070;
-}
+// MODAL ---------------------------------------------------------------
 
-.feature__title {
-  font-size: 1.4rem;
-  color: #00ffb0;
-  margin-bottom: 10px;
-}
+window.openModal = () =>
+  document.getElementById("main-modal").style.display = "flex";
 
-.feature__text {
-  color: #cfcfcf;
-}
+window.closeModal = () =>
+  document.getElementById("main-modal").style.display = "none";
 
-/* -----------------------------------
-   TESTEMUNHOS
------------------------------------ */
+// TABS ----------------------------------------------------------------
 
-.testimonials {
-  padding: 80px 20px;
-  background: #090909;
-}
+window.showLogin = () => {
+  document.getElementById("login-box").style.display = "block";
+  document.getElementById("create-box").style.display = "none";
+  document.getElementById("tab-login").classList.add("active");
+  document.getElementById("tab-create").classList.remove("active");
+};
 
-.testimonial-grid {
-  max-width: 1000px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
+window.showCreate = () => {
+  document.getElementById("login-box").style.display = "none";
+  document.getElementById("create-box").style.display = "block";
+  document.getElementById("tab-create").classList.add("active");
+  document.getElementById("tab-login").classList.remove("active");
+};
 
-.testimonial {
-  background: #111;
-  padding: 25px;
-  border-radius: 14px;
-  border: 1px solid #222;
-  box-shadow: 0 0 20px #ffffff10;
-  transition: 0.3s;
-}
+// CREATE ACCOUNT -------------------------------------------------------
 
-.testimonial:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 30px #ff004420;
-}
+document.getElementById("btn-create").addEventListener("click", async () => {
+  const email = document.getElementById("create-email").value;
+  const password = document.getElementById("create-password").value;
 
-.testimonial-text {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #e4e4e4;
-}
-
-.testimonial-author {
-  font-size: 0.9rem;
-  color: #aaaaaa;
-}
-
-/* -----------------------------------
-   CTA FINAL
------------------------------------ */
-
-.cta-final {
-  padding: 90px 20px;
-  text-align: center;
-}
-
-.cta-final h2 {
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: #ff0044;
-}
-
-.cta-final p {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: #d3d3d3;
-  margin-bottom: 30px;
-}
-
-/* -----------------------------------
-   FOOTER
------------------------------------ */
-
-.footer {
-  padding: 25px;
-  text-align: center;
-  background: #070707;
-  border-top: 1px solid #141414;
-  color: #777;
-}
-
-.footer a {
-  color: #ff0044;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
-}
-
-/* -----------------------------------
-   RESPONSIVE
------------------------------------ */
-
-@media (max-width: 600px) {
-  .hero__title {
-    font-size: 3rem;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Conta criada com sucesso!");
+    closeModal();
+    showLogin();
+  } catch (error) {
+    document.getElementById("create-error").textContent = error.message;
   }
-  .hero__lead {
-    font-size: 1.1rem;
+});
+
+// LOGIN EMAIL ----------------------------------------------------------
+
+document.getElementById("btn-login").addEventListener("click", async () => {
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login realizado com sucesso!");
+    closeModal();
+  } catch (error) {
+    document.getElementById("login-error").textContent = error.message;
   }
-}
-  </style>
-</head>
+});
 
-<body>
+// LOGIN GOOGLE ---------------------------------------------------------
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero__inner">
-      <h1 class="hero__title">Azairon</h1>
-      <p class="hero__lead">
-        Seu novo treinador inteligente.  
-        <br>Crie sua conta grátis e receba um treino completo em segundos.
-      </p>
+document.getElementById("google-login").addEventListener("click", async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    alert("Login Google: " + result.user.email);
+    closeModal();
+  } catch (error) {
+    document.getElementById("login-error").textContent = error.message;
+  }
+});
 
-      <div class="hero__cta-group">
-        <button class="btn btn--primary">Criar Conta</button>
-        <button class="btn btn--outline">Saiba Mais</button>
-      </div>
-
-    </div>
-
-    <div class="hero__footer-note">Menos de 2 minutos para começar.</div>
-  </div>
-
-  <!-- COMO FUNCIONA -->
-  <section class="how">
-    <h2 class="section-title">Como funciona?</h2>
-
-    <div class="how-grid">
-      <div class="how-item">
-        <div class="how-number">1</div>
-        <h3>Crie sua conta</h3>
-        <p>Leva menos de 1 minuto. Você só precisa informar seus objetivos.</p>
-      </div>
-
-      <div class="how-item">
-        <div class="how-number">2</div>
-        <h3>IA analisa seu perfil</h3>
-        <p>Nível, experiência, rotina, equipamentos… tudo é considerado automaticamente.</p>
-      </div>
-
-      <div class="how-item">
-        <div class="how-number">3</div>
-        <h3>Receba seu treino</h3>
-        <p>Um treino completo e otimizado para resultados reais, atualizado semanalmente.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <h2 class="section-title">Por que usar o Azairon?</h2>
-
-    <div class="feature">
-      <h2 class="feature__title">Treinos personalizados</h2>
-      <p class="feature__text">IA que entende seu corpo, objetivo e rotina.</p>
-    </div>
-
-    <div class="feature">
-      <h2 class="feature__title">Evolução contínua</h2>
-      <p class="feature__text">Ajustes automáticos para você crescer com segurança.</p>
-    </div>
-
-    <div class="feature">
-      <h2 class="feature__title">Comunidade ativa</h2>
-      <p class="feature__text">Compartilhe resultados, conquistas e receba suporte.</p>
-    </div>
-
-    <div class="feature">
-      <h2 class="feature__title">Acompanhamento inteligente</h2>
-      <p class="feature__text">Veja sua evolução e receba recomendações em tempo real.</p>
-    </div>
-
-    <div class="feature">
-      <h2 class="feature__title">Biblioteca de exercícios</h2>
-      <p class="feature__text">Vídeos, explicações e execução correta de cada movimento.</p>
-    </div>
-
-  </section>
-
-  <!-- TESTEMUNHOS -->
-  <section class="testimonials">
-    <h2 class="section-title">O que estão dizendo</h2>
-
-    <div class="testimonial-grid">
-
-      <div class="testimonial">
-        <p class="testimonial-text">
-          “Em 3 semanas senti mais evolução do que em meses treinando sozinho.”
-        </p>
-        <span class="testimonial-author">— Lucas Andrade</span>
-      </div>
-
-      <div class="testimonial">
-        <p class="testimonial-text">
-          “O plano ajusta de acordo com meu tempo. A IA realmente entende minha rotina.”
-        </p>
-        <span class="testimonial-author">— Marina Santos</span>
-      </div>
-
-      <div class="testimonial">
-        <p class="testimonial-text">
-          “Finalmente um app que não é genérico. Meu treino parece feito por um personal.”
-        </p>
-        <span class="testimonial-author">— Rafael Monteiro</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
-  <section class="cta-final">
-    <h2>Pronto para transformar seu treino?</h2>
-    <p>Crie sua conta e comece seu treino personalizado agora.</p>
-    <button class="btn btn--primary btn-big">Começar Agora</button>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2025 Azairon — Todos os direitos reservados.</p>
-  </footer>
-
-</body>
+    </script>
+  </body>
 </html>

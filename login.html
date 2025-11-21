@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azarion</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: cyan;
+      height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .start-btn {
+      padding: 15px 25px;
+      border-radius: 12px;
+      background: cyan;
+      border: none;
+      color: black;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 20px cyan;
+      font-weight: bold;
+    }
+
+    .start-btn:hover {
+      background: #00bcbc;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 420px;
+      background: #000;
+      border: 2px solid cyan;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px cyan;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      width: 50%;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      border-bottom: 2px solid cyan;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: cyan;
+      color: black;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: #111;
+      border: 1px solid cyan;
+      border-radius: 10px;
+      color: cyan;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: cyan;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .close {
+      text-align: center;
+      margin-top: 15px;
+      cursor: pointer;
+      color: cyan;
+    }
+
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão Único Inicial -->
+  <button class="start-btn" onclick="openModal()">COMEÇAR</button>
+  <button id="google-login" class="start-btn" ">COMEÇAR COM GOOGLE</button>
+
+  <!-- Modal Principal -->
+  <div id="main-modal" class="modal">
+    <div class="modal-content">
+
+      <!-- Abas -->
+      <div class="tabs">
+        <div id="tab-login" class="tab active" onclick="showLogin()">Login</div>
+        <div id="tab-create" class="tab" onclick="showCreate()">Criar Conta</div>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="login-box">
+        <input type="email" id="login-email" placeholder="Seu email">
+        <input type="password" id="login-password" placeholder="Sua senha">
+        <button id="btn-login">Entrar</button>
+        <p class="error" id="login-error"></p>
+      </div>
+
+      <!-- CRIAR CONTA -->
+      <div id="create-box" style="display: none;">
+        <input type="email" id="create-email" placeholder="Seu email">
+        <input type="password" id="create-password" placeholder="Sua senha">
+        <button id="btn-create">Criar Conta</button>
+        <p class="error" id="create-error"></p>
+      </div>
+
+      <div class="close" onclick="closeModal()">Fechar</div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtCaQCMmTUOaguvzW9wkNsCjadgc3klJM",
+      authDomain: "azarion-b19c5.firebaseapp.com",
+      projectId: "azarion-b19c5",
+      storageBucket: "azarion-b19c5.firebasestorage.app",
+      messagingSenderId: "217138953652",
+      appId: "1:217138953652:web:9c1ebe80b07af13e9006e1",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Modal
+    window.openModal = () => document.getElementById("main-modal").style.display = "flex";
+    window.closeModal = () => document.getElementById("main-modal").style.display = "none";
+
+    // Tabs
+    window.showLogin = () => {
+      document.getElementById("login-box").style.display = "block";
+      document.getElementById("create-box").style.display = "none";
+      document.getElementById("tab-login").classList.add("active");
+      document.getElementById("tab-create").classList.remove("active");
+    };
+
+    window.showCreate = () => {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("create-box").style.display = "block";
+      document.getElementById("tab-create").classList.add("active");
+      document.getElementById("tab-login").classList.remove("active");
+    };
+
+    // Login
+    document.getElementById("btn-login").addEventListener("click", async () => {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Logado!");
+        closeModal();
+      } catch (err) {
+        document.getElementById("login-error").textContent = err.message;
+      }
+    });
+
+    // Criar conta
+    document.getElementById("btn-create").addEventListener("click", async () => {
+      const email = document.getElementById("create-email").value;
+      const password = document.getElementById("create-password").value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Conta criada!");
+        closeModal();
+      } catch (err) {
+        document.getElementById("create-error").textContent = err.message;
+      }
+    });
+
+    const provider = new GoogleAuthProvider();
+
+document.getElementById("google-login").addEventListener("click", async () => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        alert("Login com Google: " + user.email);
+        closeModal("modal-login");
+    }
+    catch (error) {
+        document.getElementById("login-error").textContent = error.message;
+    }
+});
+
+  </script>
+
+</body>
+</html>
